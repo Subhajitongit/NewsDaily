@@ -2,6 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/category_news.dart';
 import 'package:news_app/models/category_model.dart';
 
 class CategoryRow extends StatelessWidget {
@@ -32,16 +33,23 @@ class CategoryRow extends StatelessWidget {
 }
 
 class CategoryTile extends StatelessWidget {
-  const CategoryTile({Key? key, this.imageUrl, this.categoryName})
+  const CategoryTile({Key? key, this.imageUrl, required this.categoryName})
       : super(key: key);
 
   final imageUrl;
-  final categoryName;
+  final String categoryName;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CategoryNews(
+                      category: categoryName.toLowerCase(),
+                    )));
+      },
       child: Container(
         margin: EdgeInsets.only(left: 12),
         child: Stack(

@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/home_screen.dart';
 
@@ -16,7 +17,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "Poppins"),
-      home: HomeScreen(),
+      home: AnimatedSplashScreen(
+        splash: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            Text("News",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40)),
+            Text("Daily",
+                style: TextStyle(
+                    color: Colors.blue,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 40)),
+          ],
+        ),
+        nextScreen: HomeScreen(),
+        splashTransition: SplashTransition.fadeTransition,
+      ),
     );
   }
 }
