@@ -51,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.only(
                           left: 12.0, right: 12, top: 18, bottom: 18),
                       child: TextFormField(
+                        keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
                             hintText: "Enter your Email address",
                             hintStyle: TextStyle(color: Colors.grey)),
@@ -59,6 +60,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: TextFormField(
+                        obscureText: true,
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                             hintText: "Enter your OTP",
                             hintStyle: TextStyle(color: Colors.grey)),
@@ -94,8 +97,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             Image.network(
                                 'https://www.freepnglogos.com/uploads/google-logo-png/google-logo-png-suite-everything-you-need-know-about-google-newest-0.png',
-                                width: 15.0,
-                                height: 15.0),
+                                width: 23.0,
+                                height: 23.0),
                             SizedBox(
                               width: 10,
                             ),
