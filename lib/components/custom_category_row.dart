@@ -2,7 +2,7 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:news_app/category_news.dart';
+import 'package:news_app/screens/category_news.dart';
 import 'package:news_app/models/category_model.dart';
 
 class CategoryRow extends StatelessWidget {

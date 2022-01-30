@@ -6,9 +6,9 @@ import 'package:news_app/components/custom_category_row.dart';
 import 'package:news_app/helper/data.dart';
 import 'package:news_app/models/category_model.dart';
 
-import 'components/custom_newsfeed.dart';
-import 'helper/news.dart';
-import 'models/article_model.dart';
+import '../components/custom_newsfeed.dart';
+import '../helper/news.dart';
+import '../models/article_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({

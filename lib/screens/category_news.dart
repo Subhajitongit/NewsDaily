@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/models/article_model.dart';
 
-import 'components/custom_newsfeed.dart';
-import 'helper/news.dart';
+import '../components/custom_newsfeed.dart';
+import '../helper/news.dart';
 
 class CategoryNews extends StatefulWidget {
   const CategoryNews({Key? key, required this.category}) : super(key: key);
