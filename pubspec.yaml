@@ -29,10 +29,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  magic_sdk: ^0.4.0
   http: ^0.13.4
   cached_network_image: ^3.2.0
-  webview_flutter: ^3.0.0
+  webview_flutter: ^2.0.13
   animated_splash_screen: ^1.1.0
+  fluttertoast: ^8.0.8
+  scroll_snap_list:
+  flutter_launcher_icons: "^0.9.2"
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -42,6 +46,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/spsc.jpeg"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

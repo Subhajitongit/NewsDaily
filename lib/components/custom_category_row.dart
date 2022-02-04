@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, avoid_types_as_parameter_names
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/screens/category_news.dart';
 import 'package:news_app/models/category_model.dart';
+import 'package:scroll_snap_list/scroll_snap_list.dart';
 
 class CategoryRow extends StatelessWidget {
   const CategoryRow({
@@ -18,16 +19,21 @@ class CategoryRow extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       height: 70,
-      child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: categories.length,
-          itemBuilder: (context, index) {
-            return CategoryTile(
-              imageUrl: categories[index].imageUrl,
-              categoryName: categories[index].categoryName,
-            );
-          }),
+      child: ScrollSnapList(
+        itemSize: 150,
+        dynamicItemSize: true,
+        initialIndex: 1,
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index) {
+          return CategoryTile(
+            imageUrl: categories[index].imageUrl,
+            categoryName: categories[index].categoryName,
+          );
+        },
+        onItemFocus: (int) {},
+      ),
     );
   }
 }
@@ -58,14 +64,14 @@ class CategoryTile extends StatelessWidget {
               borderRadius: BorderRadius.circular(12),
               child: CachedNetworkImage(
                 imageUrl: imageUrl,
-                width: 120,
-                height: 60,
+                width: 140,
+                height: 80,
                 fit: BoxFit.cover,
               ),
             ),
             Container(
-              width: 120,
-              height: 60,
+              width: 140,
+              height: 80,
               decoration: BoxDecoration(
                   color: Colors.black45,
                   borderRadius: BorderRadius.circular(12)),

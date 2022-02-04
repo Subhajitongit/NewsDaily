@@ -1,6 +1,12 @@
-// ignore_for_file: prefer_const_constructors, deprecated_member_use
+// ignore_for_file: prefer_const_constructors, deprecated_member_use, unused_field, unused_local_variable, unnecessary_new
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:magic_sdk/magic_sdk.dart';
+
+import 'home_screen.dart';
+
+String finalEmail = "";
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -10,6 +16,26 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  Magic magic = Magic.instance;
+
+  final TextEditingController _phoneController =
+      TextEditingController(text: '+91 ');
+
+  _authenticate(BuildContext context) async {
+    var token =
+        await magic.auth.loginWithSMS(phoneNumber: _phoneController.text);
+
+    debugPrint('token, $token');
+
+    if (token.isNotEmpty) {
+      /// Navigate to your home page
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+    } else {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,7 +54,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(top: 80.0, left: 12),
+                      padding: const EdgeInsets.only(top: 180.0, left: 12),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         // ignore: prefer_const_literals_to_create_immutables
@@ -51,31 +77,39 @@ class _LoginScreenState extends State<LoginScreen> {
                       padding: const EdgeInsets.only(
                           left: 12.0, right: 12, top: 18, bottom: 18),
                       child: TextFormField(
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                            hintText: "Enter your Email address",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: TextFormField(
-                        obscureText: true,
-                        keyboardType: TextInputType.number,
-                        decoration: InputDecoration(
-                            hintText: "Enter your OTP",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                      ),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          controller: _phoneController,
+                          keyboardType: TextInputType.phone,
+                          decoration: const InputDecoration(
+                              hintText: "Enter your Phone number",
+                              hintStyle: TextStyle(color: Colors.grey)),
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your phone number';
+                            }
+                            return null;
+                          }),
                     ),
                     SizedBox(
                       height: 10,
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _authenticate(context);
+                        Fluttertoast.showToast(
+                            msg: "Please Wait..",
+                            timeInSecForIosWeb: 3,
+                            backgroundColor: Colors.white,
+                            textColor: Colors.black,
+                            fontSize: 16.0);
+                      },
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
                               Colors.lightBlueAccent)),
-                      child: Text("Verify OTP"),
+                      child: Text("Verify"),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 50.0, bottom: 50.0),
@@ -88,7 +122,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 60.0),
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("Feature will be available soon!"),
+                          ));
+                        },
                         style: ButtonStyle(
                             backgroundColor: MaterialStateProperty.all<Color>(
                                 Colors.lightBlueAccent)),
