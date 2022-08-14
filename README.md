@@ -1,6 +1,6 @@
-# news_app
+# NewsDaily
 
-A new Flutter project.
+A mobile app built using google's Flutter framework, that keeps you updated with the latest news and trending stuff that's going around!
 
 ## Getting Started
 
